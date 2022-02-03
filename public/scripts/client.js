@@ -3,41 +3,7 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
-const tweetData = {
-  "user": {
-    "name": "Newton",
-    "avatars": "https://i.imgur.com/73hZDYK.png",
-    "handle": "@SirIsaac"
-  },
-  "content": {
-    "text": "If I have seen further it is by standing on the shoulders of giants"
-  },
-  "created_at": 1461116232227
-};
-let data = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png"
-      ,
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@rd" },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  }
-];
+
 
 const renderTweets = function(tweets) {
 
@@ -52,23 +18,35 @@ const renderTweets = function(tweets) {
   
 };
 
+const sanitize = function(string) {
+  const map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#x27;',
+    "/": '&#x2F;',
+  };
+  const reg = /[&<>"'/]/ig;
+  return string.replace(reg, (match)=>(map[match]));
+};
 
 const createTweetElement = function(tweetData) {
   const now = timeago.format(tweetData.created_at);
   const $tweet = $(`      
   <article>
   <header>
-    <div class="profile">
-      <img src="${tweetData.user.avatars}">
+    <div class="profile">` +
+      `<img src="${sanitize(tweetData.user.avatars)}">
       <h5>${tweetData.user.name}</h5>
     </div>
-    <h5 id="tag">${tweetData.user.handle}</h5>
+    <h5 id="tag">${sanitize(tweetData.user.handle)}</h5>
   </header>
   <div id="tweetBody">
-    <p>${tweetData.content.text}</p>
+    <p>${sanitize(tweetData.content.text)}</p>
   </div>
   <footer>
-    <small>${timeago.format(tweetData.created_at)}</small>
+    <small>${sanitize(timeago.format(tweetData.created_at))}</small>
     <div>
       <i class="fas fa-flag"></i>
       <i class="fas fa-retweet"></i>
@@ -76,6 +54,7 @@ const createTweetElement = function(tweetData) {
     </div>
   </footer>
   </article>`);
+
 
   return $tweet;
 };
@@ -96,13 +75,35 @@ const loadTweets = function() {
 // eslint-disable-next-line no-undef
 //$('.posted').append($tweet);
 
+const validateTweet = function(tweet) {
+  const actualTweet = tweet.slice(5);
+  console.log(actualTweet);
+  if (!actualTweet) {
+    $('#too-short').slideDown(500);
+    return false;
+  }
+
+  if (actualTweet.length > 140) {
+    $('#too-long').slideDown(500);
+    return false;
+  }
+  return true;
+};
+
 $(() => {
   loadTweets();
-  $('.create-tweet').submit(function (event) {
+  $('.create-tweet').submit(function(event) {
+    $('#too-short').slideUp(250);
+    $('#too-long').slideUp(250);
     event.preventDefault();
     const inputData = $(this).serialize();
-    $.post("/tweets", inputData, loadTweets());
-
-
+    if (!validateTweet(inputData)) {
+      
+      event.preventDefault();
+    } else {
+      $.post("/tweets", inputData, loadTweets());
+      
+    }
+    loadTweets();
   });
 });
