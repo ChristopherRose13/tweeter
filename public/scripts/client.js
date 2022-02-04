@@ -4,7 +4,7 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-
+//creates and renders an array of tweets
 const renderTweets = function(tweets) {
 
   $('.posted').empty();
@@ -18,6 +18,7 @@ const renderTweets = function(tweets) {
   
 };
 
+//sanitizes user inputs and removes danegrous characters
 const sanitize = function(string) {
   const map = {
     '&': '&amp;',
@@ -31,6 +32,7 @@ const sanitize = function(string) {
   return string.replace(reg, (match)=>(map[match]));
 };
 
+//creates the html and values of a tweet
 const createTweetElement = function(tweetData) {
   const now = timeago.format(tweetData.created_at);
   const $tweet = $(`      
@@ -59,22 +61,17 @@ const createTweetElement = function(tweetData) {
   return $tweet;
 };
 
+//loads the tweets that have been submitted to /tweets
 const loadTweets = function() {
   $.getJSON("/tweets", function(data) {
 
     renderTweets(data);
-    // $.each( data, function( key, val ) {
-    //   items.push( "<li id='" + key + "'>" + val + "</li>" );
-    // });
-    // console.log(data);
+
   });
   
 };
 
-//const $tweet = createTweetElement(tweetData);
-// eslint-disable-next-line no-undef
-//$('.posted').append($tweet);
-
+//validates that the tweet meets the specified requirements and returns an error message if not
 const validateTweet = function(tweet) {
   const actualTweet = tweet.slice(5);
   console.log(actualTweet);
@@ -90,20 +87,30 @@ const validateTweet = function(tweet) {
   return true;
 };
 
+
+//dynamically loads and creates tweets with valid user input
 $(() => {
   loadTweets();
   $('.create-tweet').submit(function(event) {
+    //cleans up error messages
     $('#too-short').slideUp(250);
     $('#too-long').slideUp(250);
+
+    //prevents the input so we can serialize it and sanitize it first
     event.preventDefault();
     const inputData = $(this).serialize();
     if (!validateTweet(inputData)) {
       
       event.preventDefault();
     } else {
-      $.post("/tweets", inputData, loadTweets());
+      $.post("/tweets", inputData, function () {
+        //once the tweet has been added we reload and clear the text input and character counter
+        loadTweets();
+        $('#tweet-text').val("");
+        $('.counter').val(140);
+      });
       
     }
-    loadTweets();
+
   });
 });
