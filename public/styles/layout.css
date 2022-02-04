@@ -3,40 +3,58 @@
  * https://css-tricks.com/international-box-sizing-awareness-day/
  * Do not modify these two selectors, please
  */
-html {
-  box-sizing: border-box;
+@media screen {
+  
+  html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+  /*
+  * Global layout stuff
+  */
+
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #545149;
+    background-color: #f4f1ec;
+    font-size: 24px;
+    font-family: 'Source Sans Pro', Sans-Serif;
+    margin-top: 120px; 
+  }
+
+  /*
+  * Additional CSS can be defined below or in other CSS files, as per instructions
+  */
+  main.container{
+    display: flex;
+    flex-direction: column;
+    background-color: #f4f1ec;
+    width: 90%;
+    height: 100%;
+
+    align-items: start;
+    /*vertical-align: middle; */
+  }
 }
-*, *:before, *:after {
-  box-sizing: inherit;
-}
 
-/*
- * Global layout stuff
- */
+@media screen and (min-width:1024px){
+  
+  body {
+    flex-direction: row;
+    align-items: start;
+    margin: 0em 2em 1em 1em;
+  }
 
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #545149;
-  background-color: #f4f1ec;
-  font-size: 24px;
-  font-family: 'Source Sans Pro', Sans-Serif;
-  margin-top: 120px; 
-}
-
-/*
- * Additional CSS can be defined below or in other CSS files, as per instructions
- */
-main.container{
-  display: flex;
-  flex-direction: column;
-  background-color: #f4f1ec;
-  width: 90%;
-  height: 100%;
-
-  align-items: start;
-  /*vertical-align: middle; */
+  main.container{
+    margin: 5em 0.5em 1em 4em;
+    
+  }
+  
 }
 
 

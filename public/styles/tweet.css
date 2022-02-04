@@ -1,128 +1,138 @@
+@media screen {
+
 main .new-tweet {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 2;
-}
-
-main.container .tweet{
-  display: flex;
-  width: 100%;
-  justify-content: space-evenly;
-  flex-direction: column;
-  align-items: center;
-}
-
-main.container #tweet-text {
     width: 100%;
-    border: 0px;
-    border-bottom: 2px solid darkgray;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 2;
+  }
+
+  main.container .tweet{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  main.container #tweet-text {
+      width: 100%;
+      border: 0px;
+      border-bottom: 2px solid darkgray;
+      background-color: #f4f1ec;
+  }
+
+  main.container #tweet-text:focus {
+    outline: none; 
+  }
+
+  main.container .entry {
+    
+    display: flex;
+    width: 100%;
+    margin: 0.25em 0.25em;
+    align-items: flex-end;
+    justify-content: space-between;
+    border-bottom: 5px black;
+    border-bottom-width: 85%;
+  }
+
+  main.container .submit {
+    font-family: 'bungee';
+    display: flex;
+    width: 100%;
+    padding: 0 0.25em;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  main textarea{
+    height: 75%;
+  }
+
+  #submit{
+    background-color: #4056A1;
+    font-family: 'bungee';
+  }
+
+  section.posted {
+    width: 100%;
+
+  }
+
+  section.posted article {
     background-color: #f4f1ec;
-}
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 3px solid darkgray;
+    margin-top: 20px;
+    padding: 15px;
+  }
 
-main.container #tweet-text:focus {
-  outline: none; 
-}
+  section.posted article:hover {
+    box-shadow: 5px 5px;
+  }
 
-main.container .entry {
-  
-  display: flex;
-  width: 100%;
-  margin: 0.25em 0.25em;
-  align-items: flex-end;
-  justify-content: space-between;
-  border-bottom: 5px black;
-  border-bottom-width: 85%;
-}
-
-main.container .submit {
-  font-family: 'bungee';
-  display: flex;
-  width: 100%;
-  padding: 0 0.25em;
-  align-items: flex-end;
-  justify-content: space-between;
-}
-
-main textarea{
-  height: 75%;
-}
-
-#submit{
-  background-color: #4056A1;
-  font-family: 'bungee';
-}
-
-section.posted {
-  width: 100%;
-
-}
-
-section.posted article {
-  background-color: #f4f1ec;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  border: 3px solid darkgray;
-  margin-top: 20px;
-  padding: 15px;
-}
-
-section.posted article:hover {
-  box-shadow: 5px 5px;
-}
-
-section.posted article header {
-  background-color: #f4f1ec;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-  height: 15%;
-}
-
-section.posted article footer {
-  display: flex;
-  justify-content: space-between;
-  padding: 5px;
-}
-
-section.posted img{
-  width: 40%;
-}
-
-section.posted div.profile {
+  section.posted article header {
+    background-color: #f4f1ec;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    width: 20%;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 15%;
+  }
+
+  section.posted article footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+  }
+
+  section.posted img{
+    width: 40%;
+  }
+
+  section.posted div.profile {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      width: auto;
+      margin: 0.5em 0em 0em 0em;
+  }
+
+  h5#tag {
+    opacity: 0.5;
+  }
+
+  div#tweetBody {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid darkgray;
+  }
+
+  div#tweetBody {
+    text-align: center;
+  }
+
+  section.posted i:hover {
+    color:rgb(249, 147, 58);
+  }
+
+  .error {
+    border: 1px solid;
+    margin: 10px 0px;
+    padding: 15px 10px 15px 50px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    color: #D8000C;
+    background-color: #FFBABA;
+  }
 }
 
-h5#tag {
-  opacity: 0.5;
-}
-
-div#tweetBody {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 2px solid darkgray;
-}
-
-div#tweetBody {
-  text-align: center;
-}
-
-section.posted i:hover {
-  color:cadetblue;
-}
-
-.error {
-  border: 1px solid;
-  margin: 10px 0px;
-  padding: 15px 10px 15px 50px;
-  background-repeat: no-repeat;
-  background-position: 10px center;
-  color: #D8000C;
-  background-color: #FFBABA;
+@media screen and (min-width:1024px) {
+  .profile {
+    width: 60%;
+  }
 }

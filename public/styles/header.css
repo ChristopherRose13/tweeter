@@ -1,10 +1,20 @@
-header {
-  display: flex;
-  height: 400px;
-  width: 100%;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(249, 147, 58);  
-  background-image: url("../images/background.png");
+@media screen {
+  header {
+    display: flex;
+    height: 400px;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(249, 147, 58);  
+    background-image: url("../images/background.png");
+    
+  }
 }
+
+@media screen and (min-width:1024px) {
+  header.profile {
+    margin: 6em 0em 0em 0em;
+  }
+}
+
