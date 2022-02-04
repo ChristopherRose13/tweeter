@@ -20,3 +20,12 @@ This repository is the front end code used to make and display tweets. technolog
 - md5 2.1.0 or above
 - timeago.js 4.0.2 or above
 
+## Screenshots
+
+[!"widescreen profile"](https://github.com/ChristopherRose13/tweeter/blob/master/docs/Widescreen.png?raw=true)
+
+[!"Smallscreen profile"](https://github.com/ChristopherRose13/tweeter/blob/master/docs/small%20screen.png?raw=true)
+
+[!"Error message - Tweet too big"](https://github.com/ChristopherRose13/tweeter/blob/master/docs/error%20message%20too%20long.png?raw=true)
+
+[!"Error message - Tweet too small"](https://github.com/ChristopherRose13/tweeter/blob/master/docs/small%20screen.png?raw=true)
